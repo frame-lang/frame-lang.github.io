@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Frame!"
+title:  "Welcome to Frame Lang!"
 date:   2021-02-12 07:25:37 -0800
 categories: framelang
 ---
