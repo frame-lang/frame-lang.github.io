@@ -9,18 +9,18 @@ categories: framelang
 
 In the spirit of too much is never enough, this article is the first of a series that will exhaustively beat the traditional **Hello World!** trope to death. However it is for a good cause, and will go well beyond simply introducing a `main()` function and a `print("Hola Mundo");` statement.
 
-Frame is intended to be a **<i>system specification markdown language</i>** that can be used to generate both code as well as documentation. With that in mind, we will start...
+Frame is intended to be a **<i>system specification markdown language</i>** that can be used to generate both code as well as documentation. With that in mind, we will begin...
 
 ## In the Beginning
 
-To indicate a system object in Frame we use the `#` symbol:
+To define a **system object** in Frame we use the **`#`** symbol:
 
 ```       
 #World
 ##
 ```
 
-The `##` symbol ends the specification document. And although it does not generate a <i>model</i> as documentation (it's too simple) it does generate some basic code. We will be looking at C# for this series of tutorials, but the Framepiler supports generating other languages as well (and will support many many more in the future!):
+The **`##`** symbol ends the specification document. And although this simple system definition does not generate a <i>model</i> as documentation (it's too simple) it does generate some basic code. We will be looking at C# for this series of tutorials, but the Framepiler supports generating other languages as well (and will support many many more in the future!):
 
 ```
 public partial class World {
@@ -71,6 +71,8 @@ States are identifiers in the `-machine-` block declared using the `$` symbol li
 Now we are on the map! This specification results in a model with `$Begin` as the start state:
 
 ![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld5BJC_CKghbgkQArOXLqTUqW8bmEgNafG5K0)
+
+To try this out yourself, copy the code above and paste into the left panel of the <a href='http://frame-lang.org' target='_blank'>Framepiler</a> to see various kinds of output Frame notation can be converted into.
 
 This world still doesn't do anything, but things are shaping up. Let's check out our system code now:
 
@@ -378,7 +380,7 @@ public partial class World_v6 {
 
 }
 ```
- 
+
 Here is the full working code (tested in VSCode and <a href="https://dotnetfiddle.net/QIWsZm" target="_blank">dotnetfiddle.net</a>:
 
 ```
