@@ -2,14 +2,16 @@
 layout: post
 title:  "Hello Worlds - Part 1"
 date:   2021-02-12 07:25:37 -0800
-categories: framelang
+categories: language-basics
 ---
 
 # Getting Started With Frame Syntax
 
-In the spirit of too much is never enough, this article is the first of a series that will exhaustively beat the traditional **Hello World!** trope to death. However it is for a good cause, and will go well beyond simply introducing a `main()` function and a `print("Hola Mundo");` statement.
+In the spirit of too much is never enough, this article is the first of a series that will exhaustively beat the traditional **Hello World!** trope to death. However it is for a good cause, and will go well beyond simply introducing a `main()` function and a `print("Bonjour le monde");` statement.
 
-Frame is intended to be a **<i>system specification markdown language</i>** that can be used to generate both code as well as documentation. With that in mind, we will begin...
+Frame is intended to be a **<i>system specification markdown language</i>** that can be used to generate both code as well as documentation. To see this in action, an online Frame language transpiler is available for your coding pleasure at <a href='http://frame-lang.org' target='_blank'>frame-lang.org</a>. There you will be able to copy and paste the examples in this tutorial into the Framepiler and experiment to your heart's content.
+
+With all that in mind, we will begin...
 
 ## In the Beginning
 
@@ -20,12 +22,11 @@ To define a **system object** in Frame we use the **`#`** symbol:
 ##
 ```
 
-The **`##`** symbol ends the specification document. And although this simple system definition does not generate a <i>model</i> as documentation (it's too simple) it does generate some basic code. We will be looking at C# for this series of tutorials, but the Framepiler supports generating other languages as well (and will support many many more in the future!):
+The **`##`** symbol ends the specification document. And although this simple system definition does not generate a <i>model</i> as documentation (it's too simple) it does generate some basic code. We will be looking at C# for this series of tutorials, but the Framepiler (aka Frame Transpiler) supports generating other languages as well (and will support many many more in the future!):
 
 ```
 public partial class World {
 }
-
 ```
 
 This isn't much of a World yet, but we'll fill it in and eventually say some things to it.
@@ -52,7 +53,7 @@ Let's add these to our rapidly evolving World system now:
 
 The blocks are optional, but if they are present they must be in the order shown.
 
-This specification still doesn't generate any interesting code or documentation. Let's make a **statement** and add a state to our state machine.
+This specification still doesn't generate any interesting code or documentation. Let's make a **state**ment and add a state to our state machine.
 
 ## L'état, C'est Moi
 
@@ -63,14 +64,14 @@ States are identifiers in the `-machine-` block declared using the `$` symbol li
 
   -machine-
 
-  $Begin
+  $Roi_du_Monde
 
 ##
 ```
 
-Now we are on the map! This specification results in a model with `$Begin` as the start state:
+Now we are on the map! This specification results in a model with `$Roi_du_Monde` as the start state:
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld5BJC_CKghbgkQArOXLqTUqW8bmEgNafG5K0)
+![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8LWl8purDAuttpyr9I5QgvQhcYjM8LT7NjK2Iu75BpKe1w0000)
 
 To try this out yourself, copy the code above and paste into the left panel of the <a href='http://frame-lang.org' target='_blank'>Framepiler</a> to see various kinds of output Frame notation can be converted into.
 
@@ -127,7 +128,7 @@ Each language will be slightly different in the details, but the basic principle
 
 ## Machinery and Mechanisms
 
-By convention, Frame generates a `_state_` variable to track the current state and enable us to have more than one. In `C#` we need to create a C# `delegate` type that represents references  to a method signature that is compatible with the requirements of our state method signature. Here this type is called a `FrameState`.
+By convention Frame generates a `_state_` variable to track the current state and enable us to have more than one. In `C#` we need to create a C# `delegate` type that represents references  to a method signature that is compatible with the requirements of our state method signature. Here this type is called a `FrameState`.
 
 ```
 //=========== Machinery and Mechanisms ===========//
@@ -146,11 +147,11 @@ public World_v3() {
 
 Easy peasy.
 
-So we now have achieved a fully operational state machine that does - nothing. Let's continue to add value to our system and make it do something (like say Hello).
+So we now have achieved a fully operational state machine that does - nothing. Let's continue to add value to our system and make it do something (like, hmm, Hello).
 
 ## Events
 
-In our next World, we start to get things happening. Events drive behavior in our system. In Frame the `FrameEvent` class is the defined object that the language manipulates:
+In our next World, we start to get things happening. Events drive behavior and in Frame the `FrameEvent` class is the defined object that the language manipulates:
 
 ```
 public class FrameEvent {
@@ -215,7 +216,7 @@ We are now on the brink of...
 elocution.
 
 To do so we need to introduce Frame Actions, aka private methods.
-Action syntax will look very familiar:
+Frame syntax for actions will look very familiar:
 
 ```
 #World_v5
@@ -233,7 +234,7 @@ Action syntax will look very familiar:
 ##
 ```
 
-In the `-actions-` block we see a method declaration:
+In the `-actions-` block we see a declaration for a `print` action:
 
 ```
 -actions-
@@ -266,9 +267,9 @@ private void _sBegin_(FrameEvent e) {
 }
 ```
 
-Here we see that the `print()` action is turned into `print_do()`. The suffix can be anything, but the reason for its use at all is to enable the system designer to have an interface method with the same name as the action that it will call. In order to do so and avoid name collisions the Frame code generator appends some suffix to the action, in this case `_do`. However, anything would really `_do`.
+Here we see that the `print()` action is turned into `print_do()`. The framepiler adds a standard sufffix to action names which can be anything. The reason for suffixes is to allow actions and interface methods to the same name in Frame, but distinguish them in the generated code. In order to do so and avoid name collisions the Frame code generator appends some suffix to the action, in this case `_do`. However, anything would really `_do`.
 
-Another key point is that the Framepiler (aka Frame Transpiler) only generates action stubs, the developer must decide what output mechanism to implement. There are various approaches to this requirement but the simplest would be the following:
+Another key point is that the Framepiler only generates action stubs, the developer must decide what output mechanism to implement. There are various approaches to this requirement but the simplest would be the following:
 
 ```
 virtual void print_do(String msg) {
@@ -450,4 +451,6 @@ public partial class World_v6 {
 
 ## Next steps
 
-We have covered a lot of ground in this article, but haven't really used the core capabilities of the state machine at the heart of the system specification at all. In the next installment we will add more states and see how Frame complies (mostly) with the UML specification for stateful system behavior.
+We have covered a lot of ground in this article. However, we really haven't created an interesting system yet. In the next installment we will add more states to our system and see how Frame enables defining complex system behavior with nothing more than a text editor.
+
+### La fin!
