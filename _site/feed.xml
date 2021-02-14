@@ -4,7 +4,7 @@
   <id>/</id>
   <title>Chirpy</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2021-02-13T12:23:01+08:00</updated>
+  <updated>2021-02-14T12:58:38+08:00</updated>
   <author>
     <name>your_full_name</name>
     <uri>/</uri>
@@ -51,6 +51,44 @@
 Jekyll requires blog post files to be named according to the following format:
 
 YEAR-MONTH-DAY-title.MAR...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Hello Worlds - Part 1</title>
+    <link href="/posts/hello_worlds_part_1/" rel="alternate" type="text/html" title="Hello Worlds - Part 1" />
+    <published>2021-02-12T23:25:37+08:00</published>
+  
+    <updated>2021-02-12T23:25:37+08:00</updated>
+  
+    <id>/posts/hello_worlds_part_1/</id>
+    <content src="/posts/hello_worlds_part_1/" />
+    <author>
+      <name>your_full_name</name>
+    </author>
+
+  
+    
+    <category term="framelang" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Getting Started With Frame Syntax
+
+In the spirit of too much is never enough, this article is the first of a series that will exhaustively beat the traditional Hello World! trope to death. However it is for a good cause, and will go well beyond simply introducing a main() function and a print("Hola Mundo"); statement.
+
+Frame is intended to be a system specification markdown language that can be...
     </summary>
   
 
