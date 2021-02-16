@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hello Worlds - Part 1"
-date:   2021-02-12 07:25:37 -0800
+date:   2021-02-12 00:00:00 -0800
 categories: language-basics
 ---
 
@@ -55,7 +55,7 @@ The blocks are optional, but if they are present they must be in the order shown
 
 This specification still doesn't generate any interesting code or documentation. Let's make a **state**ment and add a state to our state machine.
 
-## [L'état, c'est moi](https://en.wikipedia.org/wiki/Louis_XIV)
+## In the Beginning...
 
 States are identifiers in the `-machine-` block declared using the `$` symbol like so:
 
@@ -64,35 +64,36 @@ States are identifiers in the `-machine-` block declared using the `$` symbol li
 
   -machine-
 
-  $Roi_du_monde
+  $Begin
 
 ##
 ```
 
-Now we are on the map! This specification results in a model with `$Roi_du_monde` as the start state:
+Now we are on the map! This specification results in a model with `$Begin` as the start state:
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8LWl8purDAutFpyr9I5QgvQhcYjM8LT7NjK2Iu75BpKe1w0000)
+![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld5BJC_CKghbgkQArOXLqTUqW8bmEgNafG5K0)
 
 To try this out yourself, copy the code above and paste into the left panel of the <a href='http://frame-lang.org' target='_blank'>Framepiler</a> to see various kinds of output Frame notation can be converted into.
 
 This world still doesn't do anything, but things are shaping up. Let's check out our system code now:
 {% highlight csharp %}
-public partial class World_v3 {
+    public partial class World_v3 {    
 
-    public World_v3() {        
-        _state_ = _sBegin_;
+        public World_v3() {            
+            _state_ = _sBegin_;
+        }
+
+        //===================== Machine Block ===================//    
+
+        private void _sBegin_(FrameEvent e) {
+        }
+
+        //=========== Machinery and Mechanisms ===========//
+
+        private delegate void FrameState(FrameEvent e);
+        private FrameState _state_;
+
     }
-
-    //===================== Machine Block ===================//
-
-    private void _sBegin_(FrameEvent e) {
-    }
-
-    //=========== Machinery and Mechanisms ===========//
-
-    private delegate void FrameState(FrameEvent e);
-    private FrameState _state_;    
-}
 {% endhighlight %}
 
 
@@ -108,14 +109,15 @@ All states must live in the Machine Block. Currently our World just has one stat
 
     private void _sBegin_(FrameEvent e) {
     }
+
 {% endhighlight %}
 
 
 Frame is rather opinionated on how to implement state machines. While there are lots of equivalent ways to implement one, Frame notation is designed to express a state like this:
 
 {% highlight csharp %}
-private void _sBegin_(FrameEvent e) {
-}
+    private void _sBegin_(FrameEvent e) {
+    }
 {% endhighlight %}
 
 What we see is a class method that:
@@ -133,19 +135,19 @@ By convention Frame generates a `_state_` variable to track the current state an
 
 
 {% highlight csharp %}
-//=========== Machinery and Mechanisms ===========//
+    //=========== Machinery and Mechanisms ===========//
 
-private delegate void FrameState(FrameEvent e);
-private FrameState _state_;  
+    private delegate void FrameState(FrameEvent e);
+    private FrameState _state_;  
 {% endhighlight %}
 
 So now we have a `FrameState` type and a `_state_` variable that can reference one. Finally we initialize our `_state_` to the `$Begin` start state in the constructor of the World:
 
 
 {% highlight csharp %}
-public World_v3() {        
-    _state_ = _sBegin_;
-}
+    public World_v3() {        
+        _state_ = _sBegin_;
+    }
 {% endhighlight %}
 
 Easy peasy.
@@ -247,9 +249,9 @@ In the `-actions-` block we see a declaration for a `print` action:
 
 
 {% highlight csharp %}
--actions-
+    -actions-
 
-print [msg:String]
+    print [msg:String]
 {% endhighlight %}
 
 Frame's action syntax is to have the <i>delcaration</i> parameter list in brackets `[param1:type1 param2:type2]` while the action call is indicated with parenthesis:
@@ -262,21 +264,21 @@ So for our `print[msg:String]` declaration this code is generated:
 
 
 {% highlight csharp %}
-//===================== Actions Block ===================//
+    //===================== Actions Block ===================//
 
-virtual void print_do(String msg) {}
-{% endhighlight %}
+    virtual void print_do(String msg) {}
+    {% endhighlight %}
 
-And for the call:
+    And for the call:
 
 
-{% highlight csharp %}
-private void _sBegin_(FrameEvent e) {
-    if (e.Msg.EqualsEx("speak")) {
-        print_do("Hello World");
-        return;
+    {% highlight csharp %}
+    private void _sBegin_(FrameEvent e) {
+        if (e.Msg.EqualsEx("speak")) {
+            print_do("Hello World");
+            return;
+        }
     }
-}
 {% endhighlight %}
 
 Here we see that the `print()` action is turned into `print_do()`. The framepiler adds a standard sufffix to action names which can be anything. The reason for suffixes is to allow actions and interface methods to the same name in Frame, but distinguish them in the generated code. In order to do so and avoid name collisions the Frame code generator appends some suffix to the action, in this case `_do`. However, anything would really `_do`.
@@ -285,9 +287,9 @@ Another key point is that the Framepiler only generates action stubs, the develo
 
 
 {% highlight csharp %}
-virtual void print_do(String msg) {
-    Console.WriteLine(msg);
-}
+    virtual void print_do(String msg) {
+        Console.WriteLine(msg);
+    }
 {% endhighlight %}
 
 
@@ -299,36 +301,36 @@ To open things up we need to create interface methods. That is accomplished by a
 
 
 ```
-#World_v6
+    #World_v6
 
-  -interface-
+      -interface-
 
-  speak
+      speak
 
-...
+    ...
 
-##
+    ##
 ```
 
 This notation generates the following code:
 
 {% highlight csharp %}
-//===================== Interface Block ===================//
+    //===================== Interface Block ===================//
 
-public void speak() {
-    FrameEvent e = new FrameEvent("speak",null);
-    _state_(e);
-}
+    public void speak() {
+        FrameEvent e = new FrameEvent("speak",null);
+        _state_(e);
+    }
 {% endhighlight %}
 
 As a reminder, the interface for a `FrameEvent` is:
 
 
 {% highlight csharp %}
-public FrameEvent(String msg, Dictionary<String,object> parameters) {
-    this.msg = msg;
-    this.parameters = parameters;
-}
+    public FrameEvent(String msg, Dictionary<String,object> parameters) {
+        this.msg = msg;
+        this.parameters = parameters;
+    }
 {% endhighlight %}
 
 Here, for the first time, we see how a `FrameEvent` is generated and sent into the state machine to drive system activity.
@@ -341,23 +343,23 @@ This Frame specification here:
 
 
 ```
-#World_v6
+    #World_v6
 
-  -interface-
+      -interface-
 
-  speak
+      speak
 
-  -machine-
+      -machine-
 
-  $Begin
-    |speak|
-      print("Hello World") ^
+      $Begin
+        |speak|
+          print("Hello World") ^
 
-  -actions-
+      -actions-
 
-  print [msg:string]
+      print [msg:string]
 
-##
+    ##
 ```
 
 can now generate this code:
@@ -366,7 +368,7 @@ can now generate this code:
 
 ## Next steps
 
-We have covered a lot of ground in this article. However, we really haven't created an interesting system yet. In the [next installment]({% post_url 2021-02-14-hello_worlds_part_2 %})
+We have covered a lot of ground in this article. However, we really haven't created an interesting system yet. In the [next installment]({% post_url 2021-02-13-hello_worlds_part_2 %})
 we will add more states to our system and see how Frame enables defining complex system behavior with nothing more than a text editor.
 
 ### La fin!

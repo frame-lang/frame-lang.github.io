@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hello Worlds - Part 3"
-date:   2021-02-15 00:00:00 -0800
+date:   2021-02-13 00:00:02 -0800
 categories: language-basics
 ---
 
@@ -66,69 +66,69 @@ Here is the next World in all its manifestations:
 Here is the `C#` generated from this system definition:
 
 {% highlight csharp %}
-public partial class System_v11 {
+    public partial class System_v11 {
 
-    public World_v11() {
+        public World_v11() {
 
-        _state_ = _sBegin_;
-    }
-
-    //===================== Interface Block ===================//
-
-    public void start() {
-        FrameEvent e = new FrameEvent(">>",null);
-        _state_(e);
-    }
-
-    public void stop() {
-        FrameEvent e = new FrameEvent("<<",null);
-        _state_(e);
-    }    
-
-    //===================== Machine Block ===================//
-
-    private void _sBegin_(FrameEvent e) {
-        if (e.Msg.Equals(">>")) {
-            _transition_(_sWorking_);
-            return;
+            _state_ = _sBegin_;
         }
-    }
 
-    private void _sWorking_(FrameEvent e) {
-        if (e.Msg.Equals(">")) {
-            print_do("Hello World");
-            return;
+        //===================== Interface Block ===================//
+
+        public void start() {
+            FrameEvent e = new FrameEvent(">>",null);
+            _state_(e);
         }
-        else if (e.Msg.Equals("<<")) {
-            _transition_(_sEnd_);
-            return;
+
+        public void stop() {
+            FrameEvent e = new FrameEvent("<<",null);
+            _state_(e);
+        }    
+
+        //===================== Machine Block ===================//
+
+        private void _sBegin_(FrameEvent e) {
+            if (e.Msg.Equals(">>")) {
+                _transition_(_sWorking_);
+                return;
+            }
         }
-    }
 
-    private void _sEnd_(FrameEvent e) {
-        if (e.Msg.Equals(">")) {
-            print_do("End of the World");
-            return;
+        private void _sWorking_(FrameEvent e) {
+            if (e.Msg.Equals(">")) {
+                print_do("Hello World");
+                return;
+            }
+            else if (e.Msg.Equals("<<")) {
+                _transition_(_sEnd_);
+                return;
+            }
         }
+
+        private void _sEnd_(FrameEvent e) {
+            if (e.Msg.Equals(">")) {
+                print_do("End of the World");
+                return;
+            }
+        }
+
+        //===================== Actions Block ===================//
+
+        public virtual void print_do(string msg) {}
+
+        //=========== Machinery and Mechanisms ===========//
+
+        private delegate void FrameState(FrameEvent e);
+        private FrameState _state_;
+
+        private void _transition_(FrameState newState) {
+            FrameEvent exitEvent = new FrameEvent("<",null);
+            _state_(exitEvent);
+            _state_ = newState;
+            FrameEvent enterEvent = new FrameEvent(">",null);
+            _state_(enterEvent);
+        }    
     }
-
-    //===================== Actions Block ===================//
-
-    public virtual void print_do(string msg) {}
-
-    //=========== Machinery and Mechanisms ===========//
-
-    private delegate void FrameState(FrameEvent e);
-    private FrameState _state_;
-
-    private void _transition_(FrameState newState) {
-        FrameEvent exitEvent = new FrameEvent("<",null);
-        _state_(exitEvent);
-        _state_ = newState;
-        FrameEvent enterEvent = new FrameEvent(">",null);
-        _state_(enterEvent);
-    }    
-}
 {% endhighlight %}
 
 And the equivalent UML statechart:
