@@ -55,7 +55,7 @@ The blocks are optional, but if they are present they must be in the order shown
 
 This specification still doesn't generate any interesting code or documentation. Let's make a **state**ment and add a state to our state machine.
 
-## L'état, C'est Moi
+## [L'état, c'est moi](https://en.wikipedia.org/wiki/Louis_XIV)
 
 States are identifiers in the `-machine-` block declared using the `$` symbol like so:
 
@@ -64,14 +64,14 @@ States are identifiers in the `-machine-` block declared using the `$` symbol li
 
   -machine-
 
-  $Roi_du_Monde
+  $Roi_du_monde
 
 ##
 ```
 
-Now we are on the map! This specification results in a model with `$Roi_du_Monde` as the start state:
+Now we are on the map! This specification results in a model with `$Roi_du_monde` as the start state:
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8LWl8purDAuttpyr9I5QgvQhcYjM8LT7NjK2Iu75BpKe1w0000)
+![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8LWl8purDAutFpyr9I5QgvQhcYjM8LT7NjK2Iu75BpKe1w0000)
 
 To try this out yourself, copy the code above and paste into the left panel of the <a href='http://frame-lang.org' target='_blank'>Framepiler</a> to see various kinds of output Frame notation can be converted into.
 
@@ -312,7 +312,6 @@ To open things up we need to create interface methods. That is accomplished by a
 
 This notation generates the following code:
 
-
 {% highlight csharp %}
 //===================== Interface Block ===================//
 
@@ -336,10 +335,9 @@ Here, for the first time, we see how a `FrameEvent` is generated and sent into t
 
 ## Getting in the Last World
 
-Whew - we've been through a lot in a hurry! But we did succeed in emitting "Hello World" in Frame, however admittedly complex to create. Let's take a look at where we are at:
+Whew - we've been through a lot in a hurry! But we did succeed in emitting "Hello World" in Frame notation. Let's take a look at where we are at:
 
-
-This Frame specification ere:
+This Frame specification here:
 
 
 ```
@@ -362,116 +360,13 @@ This Frame specification ere:
 ##
 ```
 
-generates this code:
+can now generate this code:
 
-
-{% highlight csharp %}
-public partial class World_v6 {
-
-    public World_v6() {
-
-        _state_ = _sBegin_;
-    }
-
-    //===================== Interface Block ===================//
-
-    public void speak() {
-        FrameEvent e = new FrameEvent("speak",null);
-        _state_(e);
-    }    
-
-    //===================== Machine Block ===================//
-
-    private void _sBegin_(FrameEvent e) {
-        if (e.Msg.Equals("speak")) {
-            print_do("Hello World");
-            return;
-        }
-    }
-
-    //===================== Actions Block ===================//
-
-    virtual void print_do(string msg) {}
-
-    //=========== Machinery and Mechanisms ===========//
-
-    private delegate void FrameState(FrameEvent e);
-    private FrameState _state_;
-
-}
-{% endhighlight %}
-
-Here is the full working code (tested in VSCode and <a href="https://dotnetfiddle.net/QIWsZm" target="_blank">dotnetfiddle.net</a>:
-
-
-{% highlight csharp %}
-using System;
-using System.Collections.Generic;
-
-namespace HelloWorld_v6
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var world = new World_v6();
-            world.speak();
-        }
-    }
-}
-
-public class FrameEvent {
-	public FrameEvent(String Msg, Dictionary<String,object> Parameters) {
-		this.Msg = Msg;
-		this.Parameters = Parameters;
-	}
-	public String Msg;
-	public Dictionary<String,Object> Parameters;
-	public Object Return;
-}
-
-public partial class World_v6 {
-
-    public World_v6() {
-
-        _state_ = _sBegin_;
-    }
-
-    //===================== Interface Block ===================//
-
-    public void speak() {
-        FrameEvent e = new FrameEvent("speak",null);
-        _state_(e);
-    }
-
-
-    //===================== Machine Block ===================//
-
-    private void _sBegin_(FrameEvent e) {
-        if (e.Msg.Equals("speak")) {
-            print_do("Hello World");
-            return;
-        }
-    }
-
-    //===================== Actions Block ===================//
-
-
-    public virtual void print_do(string msg) {
-        Console.WriteLine(msg);
-    }
-
-    //=========== Machinery and Mechanisms ===========//
-
-    private delegate void FrameState(FrameEvent e);
-    private FrameState _state_;
-
-}
-{% endhighlight %}
-
+<iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/W7TYLg" frameborder="0"></iframe>
 
 ## Next steps
 
-We have covered a lot of ground in this article. However, we really haven't created an interesting system yet. In the next installment we will add more states to our system and see how Frame enables defining complex system behavior with nothing more than a text editor.
+We have covered a lot of ground in this article. However, we really haven't created an interesting system yet. In the [next installment]({% post_url 2021-02-14-hello_worlds_part_2 %})
+we will add more states to our system and see how Frame enables defining complex system behavior with nothing more than a text editor.
 
 ### La fin!
