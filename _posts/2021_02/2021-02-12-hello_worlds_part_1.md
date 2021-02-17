@@ -368,7 +368,7 @@ can now generate this code:
 
 ## Next steps
 
-We have covered a lot of ground in this article. However, we really haven't created an interesting system yet. In the [next installment]({% post_url 2021-02-13-hello_worlds_part_2 %})
+We have covered a lot of ground in this article. However, we really haven't created an interesting system yet. In the [next installment]({% post_url /2021-02/2021-02-13-hello_worlds_part_2 %})
 we will add more states to our system and see how Frame enables defining complex system behavior with nothing more than a text editor.
 
 ### La fin!
