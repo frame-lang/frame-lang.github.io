@@ -154,17 +154,21 @@ while the state stack pop operator produces the state to be transitioned into:
 
  <iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/aofLnO" frameborder="0"></iframe>
 
+## Refactoring Common Behavior
+
+ In the sprit of staying <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank">DRY</a> let's refactor out the common transition shared by `$A` and `$B` into a parent state `$AB`:
+
  ```
- #History203
+ #_History203_
 
-  -interface-
+    -interface-
 
-  gotoA
-  gotoB
-  gotoC
-  goBack
+    gotoA
+    gotoB
+    gotoC
+    goBack
 
-  -machine-
+    -machine-
 
     $Waiting
         |>| print("In $Waiting") ^
@@ -180,7 +184,7 @@ while the state stack pop operator produces the state to be transitioned into:
         |gotoA| print("|gotoA|") -> $A ^
 
     $AB
-        |gotoC| print("|gotoC|") $$[+] -> "$$[+]" $C ^
+        |gotoC| print("|gotoC| in $AB") $$[+] -> "$$[+]" $C ^
 
     $C
         |>| print("In $C") ^
@@ -190,7 +194,21 @@ while the state stack pop operator produces the state to be transitioned into:
 
     print [msg:string]
 
-##
+ ##
 ```
 
+We can see that the duplicated `|gotoC|` event handler is now moved into `$AB` and both `$A` and `$B` inherit behavior from it.
+
 ![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuU82iafI5S8JCqioyz8LghbgeIAEJa2E0X10kL1UBPAO4qmChiaPR42qLgo2hguTp50kA0qMSrImKb1JDZGoiKxFBybtX31HL3YXg722gd348-U4nsH7YAGpK5959LexbiiPp8_sq8g52Ed6SZcavgM0mW80)
+
+Below we can see  that the system reports out it is transitioning from `$AB` now:
+
+<iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/U1axyV" frameborder="0"></iframe>
+
+NOTE: History203 demonstrates the recommended best practice of using a Frame specification to define a base class (in this case `_History203_`) and then derive a subclass to provide the implemented actions for behavior. 
+
+## Conclusion
+
+The History mechanism is one of the most valuable contributions of Statecharts to the evolution of the state machine formalism.
+
+However, whereas Statecharts were declared to be a visual formalism <a href="https://www.sciencedirect.com/science/article/pii/0167642387900359" target="_blank">(Harel, 1987)</a> Frame is intended to be a symbolic language. As such, the Frame notation will favor a terse but (hopefully) clear symbology that is both clear and meaningful.

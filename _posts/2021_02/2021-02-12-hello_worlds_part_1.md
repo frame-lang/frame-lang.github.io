@@ -9,7 +9,7 @@ categories: language-basics
 
 In the spirit of too much is never enough, this article is the first of a series that will exhaustively beat the traditional **Hello World!** trope to death. However it is for a good cause, and will go well beyond simply introducing a `main()` function and a `print("Bonjour le monde");` statement.
 
-Frame is intended to be a **<i>system specification markdown language</i>** that can be used to generate both code as well as documentation. To see this in action, an online Frame language transpiler is available for your coding pleasure at <a href='http://frame-lang.org' target='_blank'>frame-lang.org</a>. There you will be able to copy and paste the examples in this tutorial into the Framepiler and experiment to your heart's content.
+Frame is intended to be a **<i>system specification markdown language</i>** that can be used to generate both code as well as documentation. To see this in action, an online Frame language transpiler is available for your coding pleasure at <a href='http://frame-lang.org' target='_blank'>frame-lang.org</a>. There you will be able to copy and paste the examples in this tutorial into the <a href="frame-lang.org" target="_blank">Framepiler</a> and experiment to your heart's content.
 
 With all that in mind, we will begin...
 
@@ -22,7 +22,7 @@ To define a **system object** in Frame we use the **`#`** symbol:
 ##
 ```
 
-The **`##`** symbol ends the specification document. And although this simple system definition does not generate a <i>model</i> as documentation (it's too simple) it does generate some basic code. We will be looking at C# for this series of tutorials, but the Framepiler (aka Frame Transpiler) supports generating other languages as well (and will support many many more in the future!):
+The **`##`** symbol ends the specification document. And although this simple system definition does not generate a <i>model</i> as documentation (it's too simple) it does generate some basic code. We will be looking at C# for this series of tutorials, but the <a href="frame-lang.org" target="_blank">Framepiler</a> (aka Frame Transpiler) supports generating other languages as well (and will support many many more in the future!):
 
 {% highlight csharp %}
 public partial class World {
@@ -266,7 +266,7 @@ So for our `print[msg:String]` declaration this code is generated:
 {% highlight csharp %}
     //===================== Actions Block ===================//
 
-    virtual void print_do(String msg) {}
+    protected virtual void print_do(String msg) {}
     {% endhighlight %}
 
     And for the call:
@@ -281,13 +281,13 @@ So for our `print[msg:String]` declaration this code is generated:
     }
 {% endhighlight %}
 
-Here we see that the `print()` action is turned into `print_do()`. The framepiler adds a standard sufffix to action names which can be anything. The reason for suffixes is to allow actions and interface methods to the same name in Frame, but distinguish them in the generated code. In order to do so and avoid name collisions the Frame code generator appends some suffix to the action, in this case `_do`. However, anything would really `_do`.
+Here we see that the `print()` action is turned into `print_do()`. The <a href="frame-lang.org" target="_blank">Framepiler</a> adds a standard suffix to action names which can be anything. The reason for suffixes is to allow actions and interface methods to the same name in Frame, but distinguish them in the generated code. In order to do so and avoid name collisions the Frame code generator appends some suffix to the action, in this case `_do`. However, anything would really `_do`.
 
-Another key point is that the Framepiler only generates action stubs, the developer must decide what output mechanism to implement. There are various approaches to this requirement but the simplest would be the following:
+Another key point is that the <a href="frame-lang.org" target="_blank">Framepiler</a> only generates action stubs, the developer must decide what output mechanism to implement. There are various approaches to this requirement but the simplest would be the following:
 
 
 {% highlight csharp %}
-    virtual void print_do(String msg) {
+    protected virtual void print_do(String msg) {
         Console.WriteLine(msg);
     }
 {% endhighlight %}
