@@ -139,7 +139,7 @@ And the equivalent UML statechart:
 
 The pinnacle of Statechart mods to the standard state machine is the idea of factoring common behavior between two or more states into a parent state. This is very similar to object-oriented inheritance but is strictly related to behavior and not data.
 
-UML implements this concept visually:
+UML implements this concept visually. Here we see `$A` and `$B` have identical transitions to `$C` when responding to `|e|`:
 
 ![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SajZEOpUMeeAjh1-HOAQWf6ngPMAT2A2ud7E8EgNafGCC1)
 

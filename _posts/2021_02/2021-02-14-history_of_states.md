@@ -6,11 +6,13 @@ categories: language-basics
 ---
 # State History Mechanism
 
-The statechart was proposed by Dr. David Harel in his 1987 paper, which introduced a number of additional features to pure state machines as well as visual formalisms for expressing them. One of these important new ideas was the "history" mechanism for returning to the previous state.
+The statechart was proposed by Dr. David Harel in his 1987 paper, which introduced a number of powerful augmentations to pure state machines as well as visual formalisms for expressing them. Statecharts were included as a core artifact type in the `Unified Modeling Language (UML)` which is the pre-eminent software modeling language.
+
+One of the key new ideas in statecharts was the "history" mechanism, which we will now explore.
 
 ## The Problem
 
-State machines are an inherently limited kind of system in that they have no memory except what you build into the states themselves.  Consider this system:
+State machines are an inherently limited kind of system in that they have no memory of what has happened except what you explicitly build into the states themselves.  Consider this system:
 
 `Frame`
 ```
@@ -19,10 +21,10 @@ State machines are an inherently limited kind of system in that they have no mem
   -machine-
 
     $A
-        |e1| -> $C ^
+        |gotoC| -> $C ^
 
     $B
-        |e1| -> $C ^
+        |gotoC| -> $C ^
 
     $C
         |return| ^
@@ -30,11 +32,31 @@ State machines are an inherently limited kind of system in that they have no mem
 ##
 ```
 
-![The Problem](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SajZEOxQYWgsi7P5ifg2aR6fbOfnf2Q2udN18EgNafGDC1)
+![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SajZEOxQYWgsi7P5ifg2aR6fbOf-UNv3j3c5nEUEGSKlDIW7O00000)
 
 Here we see that `$C` has no way to know what state preceded it. To solve this problem for a <i>pure</i> state machine we would have to do something like this:
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SajdCYCYS9p75KqDMr0ybOAQWf6ngPMASQGcWk9uXC4gQCSo9OoX4kKvHQKbgK1vDD0iiwOPTrICrB0ReK0000)
+```
+#History102
+
+  -machine-
+
+    $A
+        |gotoC| -> $Ca ^
+
+    $B
+        |gotoC| -> $Cb ^
+
+    $Ca
+        |return| -> $A ^
+
+    $Cb
+        |return| -> $B ^
+
+##
+```
+
+![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SajdCYCYS9p75KqDMr0ybOAQWf6ngPMAVdb-GxGvXSJX399AoIpebWMKUuP55gIMbH7ams2IphX5tM8JKl1UXU0000)
 
 `$Ca` and `$Cb` would be identical except for the response to the `|return|` message. This is obviously inefficient.
 
@@ -63,10 +85,10 @@ Let's see how these are used:
   -machine-
 
     $A
-        |e1| $$[+] -> "$$[+]" $C ^
+        |gotoC| $$[+] -> "$$[+]" $C ^
 
     $B
-        |e1| $$[+] -> "$$[+]" $C ^
+        |gotoC| $$[+] -> "$$[+]" $C ^
 
     $C
         |return| -> "$$[-]" $$[-] ^
@@ -211,4 +233,4 @@ NOTE: History203 demonstrates the recommended best practice of using a Frame spe
 
 The History mechanism is one of the most valuable contributions of Statecharts to the evolution of the state machine formalism.
 
-However, whereas Statecharts were declared to be a visual formalism <a href="https://www.sciencedirect.com/science/article/pii/0167642387900359" target="_blank">(Harel, 1987)</a> Frame is intended to be a symbolic language. As such, the Frame notation will favor a terse but (hopefully) clear symbology that is both clear and meaningful.
+However, whereas Statecharts were declared to be a visual formalism <a href="https://www.sciencedirect.com/science/article/pii/0167642387900359" target="_blank">(Harel, 1987)</a>, Frame is intended to be a symbolic language that can generate equivalent code and documentation. As such, the Frame notation will favor a terse textual syntax that is (hopefully) both clear and powerful.

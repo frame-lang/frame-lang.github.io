@@ -5,6 +5,16 @@ date:   2021-02-11 00:00:00 -0800
 categories: language-basics
 ---
 
+
+## Comments
+
+Currently Frame only has single line comments (no multiline) which start with three dashes:
+
+```
+--- this is a comment
+--- this is another one
+```
+
 ## Whitespace separators
 
 One important difference between Frame and other languages is the lack of any commas or semicolons as separators. Instead Frame relies on whitespace to delineate tokens:

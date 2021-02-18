@@ -5,11 +5,11 @@ date:   2021-02-10 00:00:00 -0800
 categories: language-basics
 ---
 
-While this site is gelling, I am keeping a FAQ post to log answers to questions I'm getting.
+While this site is gelling, I am keeping a FAQ post to log answers to questions.
 
 ## Comments
 
-Currently Frame only has single line comments which start with three dashes:
+Currently Frame only has single line comments (no multiline) which start with three dashes:
 
 ```
 --- this is a comment
@@ -18,7 +18,7 @@ Currently Frame only has single line comments which start with three dashes:
 
 Be aware - comment output in code is currently basically broken.
 
-I know.
+I know, I know.
 
 ## Punctuation
 
