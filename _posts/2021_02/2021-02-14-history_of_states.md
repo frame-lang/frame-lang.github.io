@@ -6,7 +6,7 @@ categories: language-basics
 ---
 # State History Mechanism
 
-The statechart was invented by Dr. David Harel in his 1987 paper, which proposed a number of additional features to pure state machines as well as visual formalisms for expressing them. One of these important new ideas was the "history" mechanism for returning to the previous state.
+The statechart was proposed by Dr. David Harel in his 1987 paper, which introduced a number of additional features to pure state machines as well as visual formalisms for expressing them. One of these important new ideas was the "history" mechanism for returning to the previous state.
 
 ## The Problem
 
@@ -89,7 +89,7 @@ while the state stack pop operator produces the state to be transitioned into:
 ```
 
 
- Recalling that `FrameState` is a delegate typedef in C# to allow pointers to methods, we can see that Frame generates a `_stateStack_` variable which is initialized to a `Stack<FrameState>()` data structure.
+ Recalling that `FrameState` is a delegate typedef in C# to allow references to methods, we can see that Frame generates a `_stateStack_` variable which is initialized to a `Stack<FrameState>()` data structure.
 
  `C#`
  {% highlight csharp %}
@@ -201,11 +201,11 @@ We can see that the duplicated `|gotoC|` event handler is now moved into `$AB` a
 
 ![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuU82iafI5S8JCqioyz8LghbgeIAEJa2E0X10kL1UBPAO4qmChiaPR42qLgo2hguTp50kA0qMSrImKb1JDZGoiKxFBybtX31HL3YXg722gd348-U4nsH7YAGpK5959LexbiiPp8_sq8g52Ed6SZcavgM0mW80)
 
-Below we can see  that the system reports out it is transitioning from `$AB` now:
+Below we can see  that the system reports out it is now transitioning from `$AB` rather than from the individual states:
 
 <iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/U1axyV" frameborder="0"></iframe>
 
-NOTE: History203 demonstrates the recommended best practice of using a Frame specification to define a base class (in this case `_History203_`) and then derive a subclass to provide the implemented actions for behavior. 
+NOTE: History203 demonstrates the recommended best practice of using a Frame specification to define a base class (in this case `_History203_`) and then derive a subclass to provide the implemented actions for behavior.
 
 ## Conclusion
 

@@ -35,8 +35,16 @@ We'll see.
 
 ## Using the Frampiler output
 
-Currently the <a href="http://frame-lang.org" target="_blank">Framepiler</a> does one thing - take a Frame system specification and emit a transpiled version of it in the target language.
+Currently the <a href="http://framepiler.frame-lang.org" target="_blank">Framepiler</a> does one thing - take a Frame system specification and emit a transpiled version of it in the target language.
 
 To actually use this output without too much fuss it is recommeded to use this as a base class and create a subclass from it. In the subclass it should only be necessary to override the actions and put in your custom behavior there.
 
 LMK if you need more support for your intended uses. Configurability is **very high** on the list of things to do.
+
+## Types and Operations
+
+Frame doesn't understand types at all, really. Instead the Framepiler just passes through whatever you indicate the type is. There is no validation that operations make sense based on type and instead relies on the target language to figure all that out. Which for now is as it should be as every language is its own universe of types, operations and meaning.
+
+## String Concatenation
+
+There is no operator for this yet.
