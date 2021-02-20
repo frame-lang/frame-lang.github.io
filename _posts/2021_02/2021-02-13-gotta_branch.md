@@ -166,7 +166,7 @@ Frame can also pattern match multiple numbers to a single branch as well as comp
 ```
 n ?#
     /1|2/           print("It's a 1 or 2")  :>
-    /101.1|100.0/   print("It's over 100")  :
+    /101.1|100.1/   print("It's over 100")  :
                     print("It's a lot")     ::
 ```
 The output is:
@@ -175,7 +175,7 @@ The output is:
 {% highlight csharp %}
     if (n == 1) || (n == 2)) {
         print_do("It's a 1 or 2");
-    } else if (n == 101.1) || (n == 100.0)) {
+    } else if (n == 101.1) || (n == 100.1)) {
         print_do("It's over 100");
     } else {
         print_do("It's a lot");

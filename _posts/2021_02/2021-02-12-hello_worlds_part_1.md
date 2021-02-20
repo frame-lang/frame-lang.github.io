@@ -17,6 +17,7 @@ With all that in mind, we will begin...
 
 To define a **system object** in Frame we use the **`#`** symbol:
 
+`Frame`
 ```       
 #World
 ##
@@ -42,6 +43,7 @@ Frame (currently) specifies four <i>blocks</i> to define the key aspects of a sy
 
 Let's add these to our rapidly evolving World system now:
 
+`Frame`
 ```
 #World_v2
   -interface-
@@ -59,6 +61,7 @@ This specification still doesn't generate any interesting code or documentation.
 
 States are identifiers in the `-machine-` block declared using the `$` symbol like so:
 
+`Frame`
 ```
 #World_v3
 
@@ -190,7 +193,7 @@ Frame notation uses the `@` symbol to indicate an event (much more on this later
 
 Frame uses shorthand for access to some of these parameters. The  most common situation is selecting for an event message to trigger executing an event handler:
 
-
+`Frame`
 ```
 #World_v4
 
@@ -230,7 +233,7 @@ elocution.
 To do so we need to introduce Frame Actions, aka private methods.
 Frame syntax for actions will look very familiar:
 
-
+`Frame`
 ```
 #World_v5
 
@@ -249,7 +252,7 @@ Frame syntax for actions will look very familiar:
 
 In the `-actions-` block we see a declaration for a `print` action:
 
-
+`C#`
 {% highlight csharp %}
     -actions-
 
@@ -287,7 +290,7 @@ Here we see that the `print()` action is turned into `print_do()`. The <a href="
 
 Another key point is that the <a href="frame-lang.org" target="_blank">Framepiler</a> only generates action stubs, the developer must decide what output mechanism to implement. There are various approaches to this requirement but the simplest would be the following:
 
-
+`C#`
 {% highlight csharp %}
     protected virtual void print_do(String msg) {
         Console.WriteLine(msg);
@@ -301,7 +304,7 @@ Despite all of the progress we have made, our system is still what is known as a
 
 To open things up we need to create interface methods. That is accomplished by adding interface specifications to the `-interface-` block:
 
-
+`Frame`
 ```
     #World_v6
 
@@ -316,6 +319,7 @@ To open things up we need to create interface methods. That is accomplished by a
 
 This notation generates the following code:
 
+`C#`
 {% highlight csharp %}
     //===================== Interface Block ===================//
 
@@ -327,7 +331,7 @@ This notation generates the following code:
 
 As a reminder, the interface for a `FrameEvent` is:
 
-
+`C#`
 {% highlight csharp %}
     public FrameEvent(String msg, Dictionary<String,object> parameters) {
         this.msg = msg;
@@ -343,7 +347,7 @@ Whew - we've been through a lot in a hurry! But we did succeed in emitting "Hell
 
 This Frame specification here:
 
-
+`Frame`
 ```
     #World_v6
 

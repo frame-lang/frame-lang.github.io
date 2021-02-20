@@ -959,7 +959,7 @@ Frame can also pattern match multiple numbers to a single branch as well as comp
 ```
 n ?#
     /1|2/           print("It's a 1 or 2")  :>
-    /101.1|100.0/   print("It's over 100")  :
+    /101.1|100.1/   print("It's over 100")  :
                     print("It's a lot")     ::
 ```
 The output is:
@@ -968,7 +968,7 @@ The output is:
 {% highlight csharp %}
     if (n == 1) || (n == 2)) {
         print_do("It's a 1 or 2");
-    } else if (n == 101.1) || (n == 100.0)) {
+    } else if (n == 101.1) || (n == 100.1)) {
         print_do("It's over 100");
     } else {
         print_do("It's a lot");
@@ -1049,5 +1049,74 @@ Transition labels provide clarity as to which transition is which:
 
 ## Declaring Actions
 
+Actions are declared in the `-actions-` block and observe all of the method declaration syntax discussed above. However actions do not support the alias notation:
 
-## System Variables
+`Frame`
+```
+#Kinetic
+
+  -actions-
+
+  walk
+  run [speed:float]
+  isHurt : bool
+
+##
+```
+
+
+`C#`
+{% highlight csharp %}
+    public partial class Kinetic {
+
+
+        //===================== Actions Block ===================//
+
+        protected virtual void walk_do() { throw new NotImplementedException(); }
+        protected virtual void run_do(float speed) { throw new NotImplementedException(); }
+        protected virtual bool isHurt_do() { throw new NotImplementedException(); }
+
+    }
+{% endhighlight %}
+
+Frame does not (yet) support language features for actually defining useful methods. Therefore the best practice to utilize the system controller Frame emits is to create a subclass that inherits from the controller and overrides the action declarations.
+
+Notice that the generated controller code supports a default defensive programming mechanism by throwing an exception if the base class method is called.
+
+## Domain System Variables
+
+The final block in a Frame system specification is the `-domain-` where system level (member) variables are declared:
+
+```
+    <var | const> <name> : <type_opt> = <intializer>
+```
+
+Frame supports variables (`var`) which can be changed after initializations and constants (`const`) which cannot.
+
+`Frame`
+```
+#SumData
+
+    -domain-
+
+    var i = 0
+    var temp:float = 98.6
+    const name:string = "Bob"
+
+##
+```
+
+`C#`
+{% highlight csharp %}
+    public partial class SumData {
+
+
+        //===================== Domain Block ===================//
+
+        <?> i = 0;
+        float temp = 98.6;
+        string name = "Bob";
+    }
+{% endhighlight %}
+
+As discussed previously, variables and constants can be untyped but not uninitalized. If a type is required by a target language the Framepiler will emit a token like `<?>` to indicate a missing required but unspecified type.
