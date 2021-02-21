@@ -6,4 +6,4 @@ order: 1
 
 ## The Framepiler
 
-Check out the online <a href="http://framepiler.frame-lang.org" target="_blank">Framepiler</a> to experiment with Frame. 
+Check out the online {{ site.data.site_config.framepiler_url }} to experiment with Frame.
