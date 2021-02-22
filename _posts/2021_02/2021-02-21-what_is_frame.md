@@ -9,7 +9,7 @@ Frame is a simple yet powerful markdown language for defining the dynamic behavi
 
 ## A State Machine Markdown Language
 
-Frame is a textual language that can be translated into equivalent documentation and code using the {{site.data.site_config.framepiler_url}}. UML and other modeling approaches promote a visual-first paradadigm. However this approach requires specialized (and often expensive) diagramming tools. Additionally - let's just say it - working with boxes and lines to code can be a pain.
+Frame is a textual language that can be translated into equivalent documentation and code using the {{site.data.site_config.framepiler_url}}. UML and other modeling approaches promote a visual-first paradigm. However this approach requires specialized (and often expensive) diagramming tools. Additionally - let's just say it - working with boxes and lines to code can be a pain.
 
 With Frame, anyone with a text editor can quickly sketch out a system design concept - in text:
 
