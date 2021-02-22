@@ -132,7 +132,7 @@ Here is the syntax for these blocks:
 ##  
 ```
 
-Once again, there can be 0-4 blocks, but if present they must be in this order. We will next explore each of these blocks, their purpose and supporting notation.
+Once again, there can be 0-4 blocks, but if present they must be in this order. Tying all of these together is the use of the FrameEvent which we will explore next. 
 
 ## Frame Events
 
