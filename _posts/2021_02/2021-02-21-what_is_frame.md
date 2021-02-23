@@ -92,7 +92,7 @@ With Frame, anyone with a text editor can quickly sketch out a system design con
 
 Frame comes with a supporting transpiler called the {{site.data.site_config.framepiler_url}} (clever huh?). The Framepiler is written in Rust and is deployed online as a WebAssembly module on the page itself - no server interactions are required to transpile!
 
-Additionally, the Framepiler is written in Rust as both a library as well as standalone executable. This allows Frame to support browser based use cases as well as to be included as part of arbitrary build toolchains.
+Additionally, the Framepiler is written as both a library as well as standalone executable. This allows Frame to support browser based use cases as well as to be included as part of arbitrary build toolchains.
 
 ## Code Generation
 
@@ -120,6 +120,6 @@ This capability, in and of itself, is interesting and valuable. However, by taki
 
 ## The Future of Frame
 
-The roadmap for Frame will be a journey that starts with the evolution of the language to define the capabilities and semantics of individual systems as implemented by object-oriented classes. Additionally, the project will explore other possible targets for system controllers than just object-oriented classes. These will include but are not limited to lower-level systems languages for embedded systems and hardware.
+The roadmap for Frame will be a journey that starts with the evolution of the language to define the capabilities and semantics of individual systems as implemented by object-oriented classes. Additionally, the project will explore other possible targets for system controllers than just object-oriented classes. These will include but are not limited to lower-level languages for embedded systems and hardware.
 
-Looking forward Frame will explore how to design, generate and document systems-of-systems that control vastly more complex environments in a powerful and understandable way.
+Looking into the future, the Frame project will explore how to design, generate and document <a href="https://en.wikipedia.org/wiki/System_of_systems#:~:text=System%20of%20systems%20is%20a,sum%20of%20the%20constituent%20systems." target="_blank">systems-of-systems</a> that control vastly more complex environments in a powerful and understandable way.

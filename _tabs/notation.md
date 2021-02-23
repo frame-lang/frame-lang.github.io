@@ -4,7 +4,7 @@ icon: fas fa-info
 order: 2
 ---
 
-# Frame System Notation (FSN) 0.3
+# Frame System Notation (FSN) v0.3
 
 **Frame System Notation** (FSN) is a domain specific markdown language for defining the behavior of software (and other) systems. Frame technology generates both system controller code as well as corresponding documentation from a system specification document. Frame currently supports generating C#, C++, JavaScript and UML documentation.
 
@@ -112,9 +112,9 @@ The `#` token prefix tags an identifier as a <i>system</i>. the `##` token indic
 ##
 ```
 
-Currently Frame generates and object-oriented class for each system specification. However, this does not preclude other ways to implement system control and will be an interesting topic for research in the future.
+Currently Frame generates an object-oriented class for each system specification document. However, this does not preclude other ways to implement system controllers which will be an interesting research topic for the future.
 
-Frame is highly opinionated about the internal structure of a system and currently specifies a composition of four sequential (but optional) "blocks":
+Frame is highly opinionated about the internal structure of system controllers and currently specifies a composition of four sequential (but optional) "blocks":
 
 1. Interface
 2. State Machine
@@ -132,11 +132,11 @@ Here is the syntax for these blocks:
 ##  
 ```
 
-Once again, there can be 0-4 blocks, but if present they must be in this order. Tying all of these together is the use of the FrameEvent which we will explore next. 
+Once again, there can be 0-4 blocks, but if present they must be in this order. Tying all of these together is the use of the FrameEvent which we will explore next.
 
 ## Frame Events
 
-Frame Events are essential to the notation and the implementation of the system as an object-oriented class.  The Frame notation assumes three mandatory fields for a FrameEvent:
+Frame Events are essential to the notation and the implementation of Frame system controllers. Frame notation assumes three mandatory fields for a FrameEvent:
 
 - A `message` object (String, enumeration, other)
 - A `parameters` key/value lookup object
@@ -157,7 +157,7 @@ public class FrameEvent {
 }
 {% endhighlight %}
 
-Frame notation uses the `@` symbol to reference an event . Each of the three attributes has its own accessor symbol as well:
+Frame notation uses the `@` symbol to identify a FrameEvent. Each of the three FrameEvent attributes has its own accessor symbol as well:
 
 | Symbol | Meaning/Usage |
 |--------|---------|
@@ -257,7 +257,7 @@ This can be used to change the messages that the interface sends to the state ma
 
     -interface-
 
-    speak [name:string] : AudioClip @(|hablar|)
+    speak [name:string] : AudioClip @(|hable|)
 ##
 ```
 
@@ -271,7 +271,7 @@ public partial class SpanishDog {
         Dictionary<String,object> parameters = new Dictionary<String,object>();
         parameters["name"] = name;
 
-        FrameEvent e = new FrameEvent("hablar",parameters);
+        FrameEvent e = new FrameEvent("hable",parameters);
         _state_(e);
         return (AudioClip) e.Return;
     }
@@ -279,7 +279,7 @@ public partial class SpanishDog {
 }
 {% endhighlight %}
 
-As we can see interface methods do not provide any actual functionality. Instead, the interface simply transmits the message and parameters from the outside world to the system's internal state machine. When the machine completes it's activity the interface returns whatever values come back from it on the FrameEvent's return attribute.
+As we can see interface methods do not provide any actual functionality. Instead, the interface simply transmits the message and parameters from the outside world to the system controller's internal state machine. When the machine completes it's activity the interface returns whatever values come back from it on the FrameEvent's return attribute.
 
 Frame takes advantage of the message alias capability to define a standardized pattern of starting and stopping a system:
 
@@ -312,7 +312,7 @@ public partial class System {
 }
 {% endhighlight %}
 
-This enables flexibility in what the actual interface methods names are while maintaining a standardized internal protocol using `>>` and `<<`. We will revisit how these are used after introducing Transitions below.
+This feature gives flexibility in naming the interface methods while maintaining a standardized internal protocol for system start/stop using `>>` and `<<`. We will revisit how these are used after introducing Transitions below.
 
 ## Machine Block
 
@@ -367,19 +367,22 @@ After being initialized, the `_state_` variable should only be modified as part 
 `C#`
 {% highlight csharp %}
     public partial class LaMachine {
-        public LaMachine() {        
+        public LaMachine() {
+
             _state_ = _sBegin_;
         }
+
 
         //===================== Machine Block ===================//
 
         private void _sBegin_(FrameEvent e) {
         }
 
-        //=========== Machinery and Mechanisms ===========//
+        //=============== Machinery and Mechanisms ==============//
 
         private delegate void FrameState(FrameEvent e);
         private FrameState _state_;
+
     }
 {% endhighlight %}
 
@@ -434,7 +437,7 @@ The basic return token simply returns from the state function while the return v
         |continueEvent|
             >       --- continue terminator
         |returnEvent|
-    ^       --- return terminator
+            ^       --- return terminator
         |returnValueEvent|
             ^(42)   --- return value terminator
 
