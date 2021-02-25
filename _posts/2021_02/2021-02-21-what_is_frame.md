@@ -5,11 +5,11 @@ date:   2021-02-21 00:00:00 -0800
 categories: language-basics
 ---
 
-Frame is a simple yet powerful markdown language for defining the dynamic behavior of systems. With Frame notation it is easy to quickly define state machines that comply with core UML statechart concepts while taking a decidedly advantageous new approach.
+Frame is a simple yet powerful _system specification language_ for defining the dynamic behavior of systems. With Frame notation it is easy to quickly design state machines that comply with core UML statechart concepts through a decidedly advantageous new approach.
 
 ## A State Machine Markdown Language
 
-Frame is a textual language that can be translated into equivalent documentation and code using the {{site.data.site_config.framepiler_url}}. UML and other modeling approaches promote a visual-first paradigm. However this approach requires specialized (and often expensive) diagramming tools. Additionally - let's just say it - working with boxes and lines to code can be a pain.
+UML and other modeling specifications promote a visual-first paradigm. However this approach to system design requires (sometimes expensive) diagramming and modeling tools. Additionally - let's just say it - working with boxes and lines to code can be a pain when the systems get complex.
 
 With Frame, anyone with a text editor can quickly sketch out a system design concept - notepad is just fine!
 
@@ -31,6 +31,9 @@ With Frame, anyone with a text editor can quickly sketch out a system design con
         |turnOff| -> $Off ^
 ##
 ```   
+
+The true power of Frame, however, is realized by the ability to generate both documentation and code from Frame specification documents:
+
 `UML`
 
 ![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L_DFI5AgvQc6yF30dMYjMGLVN3YJ91SGWDaZAIa5DsT38nBgaj2ZFFm_2vWAAGvMYo0FvK0KEgNafGFi0)
