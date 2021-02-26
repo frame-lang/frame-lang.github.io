@@ -102,7 +102,7 @@ Passing data to a new state via a transition is a common and useful feature. For
 
 ## Exit Event Parameters
 
-Though not as common an operation as sending data to the next state, Frame enables sending data upon exit to the current state as well:
+Though not as common an operation as sending data forward to the next state, Frame also enables sending data to the exit event hander of the current state as well:
 
 `(<exit_argument_list>) -> $NewState`
 

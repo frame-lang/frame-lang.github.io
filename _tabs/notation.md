@@ -1123,3 +1123,273 @@ Frame supports variables (`var`) which can be changed after initializations and 
 {% endhighlight %}
 
 As discussed previously, variables and constants can be untyped but not uninitalized. If a type is required by a target language the Framepiler will emit a token like `<?>` to indicate a missing required but unspecified type.
+
+
+## Transition Parameters
+
+Transition parameters allow system designers to specify that data that should be sent to enter `|>|` and exit `|<|` event handlers during a transition.
+
+This capability simplifies managing data passing when the current event handler shouldn't process information in the current context.
+
+### Enter Event Parameters
+
+Frame provides notation to directly pass arguments to the new state as part of a transition:
+
+`-> (<enter_argument_list>) $NewState`
+
+For instance:
+
+`-> ("Mark") $PrintName`
+
+This list is sent as arguments to the enter event in the target state:
+
+`Frame`
+```
+#EnterEventParameters
+
+    -interface-
+
+    start @(|>>|)
+
+    -machine-
+
+    $Begin
+        |>>| -> ("Hello $State") $State ^
+
+    $State
+        |>| [greeting:string]
+            print(greeting) ^
+
+    -actions-
+
+    print[message:string]
+
+##
+```
+
+### Exit Event Parameters
+
+Though not as common an operation as sending data forward to the next state, Frame also enables sending data to the exit event hander of the current state as well:
+
+`(<exit_argument_list>) -> $NewState`
+
+For instance:
+
+`("cya") -> $NextState`
+
+as in
+
+`Frame`
+```
+    $OuttaHere
+        |<| [exitMsg:string]
+            print(exitMsg) ^
+
+        |gottaGo|
+            ("cya") -> $NextState ^
+```
+
+
+
+## State Parameters
+
+In addition to parameterizing the transition operator, Frame enables passing arguments to states themselves. State arguments are passed in an expression list after the target state identifier:
+
+`-> $NextState(<state_args>)`
+
+State parameters are declared as a parameter list for the state:
+
+`$NextState [<state_params>]`
+
+Unlike transition parameters which are scoped to the enter/exit event handlers, state parameters are scoped to the lifecycle of the state itself and therefore in scope for any state event handler.
+
+`Frame`
+```
+#StateParameters
+
+    -interface-
+
+    start @(|>>|)
+    stop @(|<<|)
+
+    -machine-
+
+    $Begin
+        |>>| -> $State("Hi! I am $State :)")  ^
+
+    $State [stateNameTag:string]
+        |>|  print(stateNameTag) ^
+        |<|  print(stateNameTag) ^
+        |<<|
+             print(stateNameTag)
+             -> $End ^
+
+    $End
+
+    -actions-
+
+    printAll[message:string]
+
+    -domain-
+
+    var systemName = "#Variables"
+##
+```
+Above we see that the `stateNameTag` is accessible in the enter, exit and stop event handlers. It will also be in scope for all other event handlers for the state as well.
+
+## Frame Variables
+
+Frame has three scopes for variable declarations:
+
+- System domain variables
+- State variables
+- Event handler variables
+
+### System Domain Variables
+
+In object-oriented terminology, domain variables are simply member variables. As such, their scope is system wide.
+
+`Frame`
+```
+#DomainVariables
+
+    start @(|>>|)
+
+    -machine-
+
+    $Begin
+        |>>|
+            print(systemWide)
+            -> $S0 ^
+
+    $S0
+        |>|
+            print(systemWide)
+            -> $S1 ^
+
+    $S1
+        |>|
+            print(systemWide)
+            -> $End ^            
+
+    $End
+        |>|
+            print(systemWide)
+            -> $End ^   
+
+    -domain-
+
+    var systemWide:string = "bigtime"
+##
+```
+
+## State Variables
+
+The next scope for declaring variables is the state. States can declare variables above the first event handler:
+
+`Frame`
+```
+    ...
+    $State
+        var x:int = 0
+
+        |>| ^
+    ...
+```
+
+State variable scope is across all event handlers for the lifecycle of the state:
+
+`Frame`
+```
+#StateVariableExample
+
+    -machine-
+
+    $Working
+        var stateName:string = "$Working"
+
+        |>| print(stateName) ^
+        |<| print(stateName) ^
+        |<<| print(stateName) ^
+##
+```
+As we can see, the state variable `stateName` stays in scope for the active lifecycle of the state, just like state parameters.
+
+## Event Handler Variables
+
+Event handler variables are scoped to the event handler they are declared in:
+
+`Frame`
+```
+#EventHandlerVariableExample
+
+    -machine-
+
+    $Working
+        |>|
+            var id:string = "12345"
+
+            print(getFirstName(id)) ^
+        |e1|
+            print(getFirstName(id)) ^ --- Error!            
+##
+```
+
+## Scope Identifiers
+
+If variables have unique names then Frame resolves them by searching in the following priority order for scopes for the first match:
+
+1. Event Handler Variables
+2. Event Handler Parameters
+3. State Variables
+4. State Parameters
+5. System Domain Variables
+
+To disambiguate variables with the same name in different scopes, Frame uses the following symbols:
+
+|Symbol|Scope|Example|
+|:--|---|---|
+|`||.<id>`|Event Handler Variable|`||.d`|
+|`||[<id>]`|Event Handler Parameter|`||[c]`|
+|`$.<id>`|State Variable|`$.b`|
+|`$[<id>]`|State Parameter|`$[a]`|
+|`#.<id>`|System Variable|`#.e`|
+
+Here we can see the use of each of these scope identifiers:
+
+`Frame`
+```
+#ScopeIdentifiers
+
+    -interface-
+
+    start @(|>>|)
+
+    -machine-
+
+    $Begin
+        |>>| -> (2) $Scopes(4) ^
+
+    $Scopes[d:int] --- 4
+
+        var c:int = 3
+
+        |>| [b:int] --- 2
+
+            var a:int = 1
+
+            output(||.a ||[b] $.c $[d] #.e) ^
+
+    -actions-
+
+    output[a:int b:int c:int d:int e:int]
+
+    -domain-
+
+    var e:int = 5
+##
+```
+
+You can see the generated controller here:
+
+<iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/AH20m9" frameborder="0"></iframe>

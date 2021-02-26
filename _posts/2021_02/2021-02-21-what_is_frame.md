@@ -7,7 +7,7 @@ categories: language-basics
 
 Frame is a simple yet powerful _system specification language_ for defining the dynamic behavior of systems. With Frame notation it is easy to quickly design state machines that comply with core UML statechart concepts through a decidedly advantageous new approach.
 
-## A State Machine Markdown Language
+## A Markdown Language For System Designers
 
 UML and other modeling specifications promote a visual-first paradigm. However this approach to system design requires (sometimes expensive) diagramming and modeling tools. Additionally - let's just say it - working with boxes and lines to code can be a pain when the systems get complex.
 
@@ -99,7 +99,7 @@ Additionally, the Framepiler is written as both a library as well as standalone 
 
 ## Code Generation
 
-Frame currently supports generating UML, C#, C++ and JavaScript. In the future Frame will support a much wider range of languages.
+Frame currently supports generating UML, C#, C++ and JavaScript. In the future Frame will support a much wider range of target languages.
 
 ## Software Architecture and Engineering.  
 
