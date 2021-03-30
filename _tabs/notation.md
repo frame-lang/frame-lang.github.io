@@ -101,6 +101,18 @@ Unlike other languages where structured whitespace is significant (e.g. Python),
 
 The esthetic goal is to be as spare and clean as possible, but it may take some getting used to.
 
+## Lists
+
+List come in two flavors - *parameter lists* and *expression lists*.
+
+Frame uses square brackets to denote parameter lists:
+
+```
+[x y]
+[x:int y:string]
+```
+
+
 ## System Controller Architecture
 
 Now with the basics explained we can take a look at the big picture and work in.
