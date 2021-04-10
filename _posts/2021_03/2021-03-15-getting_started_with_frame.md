@@ -5,6 +5,14 @@ date:   2021-03-15 00:00:00 -0800
 categories: language-basics
 ---
 
+## Quick Start
+
+Framing software is a dramatically different way to think about designing software systems. However! After you master thinking contextually, I believe you won't ever want to work any other way. 
+
+To get going, a good place to start is with my [Getting Started With Frame](https://www.youtube.com/watch?v=MfOIQfuPw30) video. It gives a good overview of all the basics of how Frame restructures code to make software system design more intuitive, logical, powerful and fun to code.
+
+After that, continue reading below for other helpful tips and insights on your exciting journey with Frame.
+
 ## What You Need to Know
 
 Documents created using Frame and the Framepiler are called _specs_ for *specifications*. This is because Frame is not (currently) a complete programming language - it's focus is on creating structure and crafting how a system should respond to events, not data manipulation. To that end, Frame enables developers to generate a *Spec* base class (currently for 6 languages - more to come) that has all of the state machine logic but not all of the final action implementation code needed for a functional system.
@@ -39,7 +47,7 @@ I've put together videos on YouTube to show step-by-step how to get started with
 
 ## Join the Community
 
- I look forward to helping and collaborating with others who are curious, facinated, doubtful or passionate about creating stateful software - using Frame or not.
+ I look forward to helping and collaborating with others who are curious, fascinated, doubtful or passionate about creating stateful software - using Frame or not.
 
 Come join the discussion on [Discord](https://discord.com/invite/CfbU4QCbSD) or reach out to me on [Reddit](https://www.reddit.com/r/statemachines/) and let me know what you are interested in doing, wondering about or need help with using Frame.
 
