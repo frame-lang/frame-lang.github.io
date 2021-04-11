@@ -6,7 +6,7 @@ order: 1
 
 ## The Framepiler
 
-The {{ site.data.site_config.framepiler_url }} - the best tool in the Universe to design with Frame.
+The {{ site.data.site_config.framepiler_url }} - the best tool in the Universe to Frame with.
 
 ## Videos
 
