@@ -56,7 +56,6 @@ This approach enables a simple way for a child state event handler to do somethi
     <tr>
         <td style="vertical-align:top;">
 <pre >
-
 #ReturnVsContinue
 
 
@@ -110,7 +109,6 @@ This approach enables a simple way for a child state event handler to do somethi
         </td>
         <td>
 <pre align="left">
-// emitted from framec_v0.3.39
 public partial class ReturnVsContinue {
     public ReturnVsContinue() {
 
@@ -158,7 +156,9 @@ public partial class ReturnVsContinue {
 
     //===================== Actions Block ===================//
 
-    protected virtual void log_do(string msg) { throw new NotImplementedException(); }
+    protected virtual void log_do(string msg) {
+        throw new NotImplementedException();
+    }
 
 
     //=============== Machinery and Mechanisms ==============//
@@ -172,8 +172,8 @@ public partial class ReturnVsContinue {
     </tr>
 </table>
 
-The \_return and \_continue interface methods above are prefixed with a "_" as both return and continue are reserved words in many target languages. We use the alias notation to send the `|return|` and `|continue|` messages.
+As both `return` and `continue` are reserved words in many target languages, we expose the interface methods using a `_` prefix and use the alias notation to send the `|return|` and `|continue|` messages. This is a good example of how the alias feature comes in handy to accommodate target language interface requirements while maintaining standard or desirable messages internally to drive the state machine.
 
-This code can be seen running in this online demo:
+Here is the working demo for the spec:
 
 <iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/Qq69UX" frameborder="0"></iframe>
