@@ -12,7 +12,7 @@ Frame event handlers are terminated with two operators:
 |^|return|
 |:>|continue|
 
-Return is, by far, the most common
+Return is, by far, the most common of the two. Lining up the Frame notation with the C# code it generates we can see how they align:
 
 <table>
     <tr>
@@ -172,7 +172,7 @@ public partial class ReturnVsContinue {
     </tr>
 </table>
 
-Note that above the interface methods are prefixed with a "_" as both return and continue are reserved words in many target languages. We use the alias notation to send the `|return|` and `|continue|` messages.
+The \_return and \_continue interface methods above are prefixed with a "_" as both return and continue are reserved words in many target languages. We use the alias notation to send the `|return|` and `|continue|` messages.
 
 This code can be seen running in this online demo:
 
