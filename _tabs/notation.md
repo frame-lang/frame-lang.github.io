@@ -435,7 +435,7 @@ Event handlers have two terminator tokens - return and continue.
 |----|----|----|
 |`^`|return|`return;`|
 |`^(42)`|return value| `frameEvent._return = 42;`<br>`return;``|
-|`>`|continue|`break;`|
+|`:>`|continue|`break;`|
 
 The basic return token simply returns from the state function while the return value variant first sets the FrameEvent's return value. The continue token allows the code to break out of the message tests and, as we will see later, enable further processing in parent states.
 
@@ -447,7 +447,7 @@ The basic return token simply returns from the state function while the return v
 
     $State
         |continueEvent|
-            >       --- continue terminator
+            :>       --- continue terminator
         |returnEvent|
             ^       --- return terminator
         |returnValueEvent|
