@@ -133,7 +133,7 @@ Here is the `C#` generated from this system definition:
 
 And the equivalent UML statechart:
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld5BJC_CKghbgeVpm_ABipBnq917Nl1GmBrehLa5NrmwYWmjCWlXm7LOAQig6HYRMTdOGcWig0L84CWIkmCO6gi0XDIy5w180)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld5BJC_CKghbgeVpm_ABipBnq917Nl1GmBrehLa5NrmwYWmjCWlXm7LOAQig6HYRMTdOGcWig0L84CWIkmCO6gi0XDIy5w180)
 
 ## Hierarchical State Machines (HSMs)
 
@@ -141,7 +141,7 @@ The pinnacle of Statechart mods to the standard state machine is the idea of fac
 
 UML implements this concept visually. Here we see `$A` and `$B` have identical transitions to `$C` when responding to `|e|`:
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SajZEOpUMeeAjh1-HOAQWf6ngPMAT2A2ud7E8EgNafGCC1)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SajZEOpUMeeAjh1-HOAQWf6ngPMAT2A2ud7E8EgNafGCC1)
 
 In Frame notation that system looks like this:
 
@@ -180,7 +180,7 @@ As we can see, there is redundant behavior between states `$A` and `$B`.  **Hier
 ##
 ```
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld1MgkMgXx834ejIy4g200X10X1oXl5eaCIUO650Z5rIFhguTq2Wh1JLbGoCJwrG8nUMGcfS2j0e0)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld1MgkMgXx834ejIy4g200X10X1oXl5eaCIUO650Z5rIFhguTq2Wh1JLbGoCJwrG8nUMGcfS2j0e0)
 
 Thanks to the approach Frame takes with implementing state machines, the mechanism for coding HSM functionality is trivial:
 
@@ -328,7 +328,7 @@ $End
 
 Here is the Framepiler generated UML documentation for the `#FinalWorld`:
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld5BJC_CKghbgeNoNrBJ4qfmIe8W24434mlEBiZFpqg5YjKWoGQd59KWoS5DSyrB0PaPhnIhewjf1RE42ao0-t4Gh1JLbGoCJQpix2Cq5bG0fWXgEK5IIcPmDLGQLWfk5GndKCo1b82V1bTZOG1KufEQb0CC20000)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld5BJC_CKghbgeNoNrBJ4qfmIe8W24434mlEBiZFpqg5YjKWoGQd59KWoS5DSyrB0PaPhnIhewjf1RE42ao0-t4Gh1JLbGoCJQpix2Cq5bG0fWXgEK5IIcPmDLGQLWfk5GndKCo1b82V1bTZOG1KufEQb0CC20000)
 
 
 And at last, here is the final `C#` output and its running code (with a hand coded `print()` action):

@@ -74,7 +74,7 @@ States are identifiers in the `-machine-` block declared using the `$` symbol li
 
 Now we are on the map! This specification results in a model with `$Begin` as the start state:
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld5BJC_CKghbgkQArOXLqTUqW8bmEgNafG5K0)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld5BJC_CKghbgkQArOXLqTUqW8bmEgNafG5K0)
 
 To try this out yourself, copy the code above and paste into the left panel of the <a href='http://framepiler.frame-lang.org' target='_blank'>Framepiler</a> to see various kinds of output Frame notation can be converted into.
 
