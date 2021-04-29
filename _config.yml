@@ -17,7 +17,7 @@ timezone: Asia/Shanghai
 # --------------------------
 title: Frame                           # the main title
 
-tagline: A System Specification Language   # it will display as the sub-title
+tagline: A Software Architecture Language   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, portfolio, sidebar,
