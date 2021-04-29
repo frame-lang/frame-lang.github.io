@@ -32,7 +32,7 @@ State machines are an inherently limited kind of system in that they have no mem
 ##
 ```
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SajZEOxQYWgsi7P5ifg2aR6fbOf-UNv3j3c5nEUEGSKlDIW7O00000)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SajZEOxQYWgsi7P5ifg2aR6fbOf-UNv3j3c5nEUEGSKlDIW7O00000)
 
 Here we see that `$C` has no way to know what state preceded it. To solve this problem for a <i>pure</i> state machine we would have to do something like this:
 
@@ -56,7 +56,7 @@ Here we see that `$C` has no way to know what state preceded it. To solve this p
 ##
 ```
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SajdCYCYS9p75KqDMr0ybOAQWf6ngPMAVdb-GxGvXSJX399AoIpebWMKUuP55gIMbH7ams2IphX5tM8JKl1UXU0000)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SajdCYCYS9p75KqDMr0ybOAQWf6ngPMAVdb-GxGvXSJX399AoIpebWMKUuP55gIMbH7ams2IphX5tM8JKl1UXU0000)
 
 `$Ca` and `$Cb` would be identical except for the response to the `|return|` message. This is obviously inefficient.
 
@@ -96,7 +96,7 @@ Let's see how these are used:
 ##
 ```
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuU82iafI5HmLghbgeMmd9BOpcEseeAjh1sHRAQYeH6l7SZcXyPt1_6WFhLY8a6uibqDgNWhGV000)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuU82iafI5HmLghbgeMmd9BOpcEseeAjh1sHRAQYeH6l7SZcXyPt1_6WFhLY8a6uibqDgNWhGV000)
 
 What we see above is that the state stack push token precedes a transition to a new state:
 
@@ -172,7 +172,7 @@ while the state stack pop operator produces the state to be transitioned into:
 ##
 ```
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuU82iafI5S8JCqioyz8LghbgeIAEI6md9BOpc1sj5QkWgsi7qyS5fK5YG9rM2chAXaOcrkdv9VcE42QA2YSK5KvG5Ou4vPo1SYegqTgnN4vuR792K-iCvaTxQCL2X7HZkHnIyrB0lkS20000)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuU82iafI5S8JCqioyz8LghbgeIAEI6md9BOpc1sj5QkWgsi7qyS5fK5YG9rM2chAXaOcrkdv9VcE42QA2YSK5KvG5Ou4vPo1SYegqTgnN4vuR792K-iCvaTxQCL2X7HZkHnIyrB0lkS20000)
 
  <iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/aofLnO" frameborder="0"></iframe>
 
@@ -221,7 +221,7 @@ while the state stack pop operator produces the state to be transitioned into:
 
 We can see that the duplicated `|gotoC|` event handler is now moved into `$AB` and both `$A` and `$B` inherit behavior from it.
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuU82iafI5S8JCqioyz8LghbgeIAEJa2E0X10kL1UBPAO4qmChiaPR42qLgo2hguTp50kA0qMSrImKb1JDZGoiKxFBybtX31HL3YXg722gd348-U4nsH7YAGpK5959LexbiiPp8_sq8g52Ed6SZcavgM0mW80)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuU82iafI5S8JCqioyz8LghbgeIAEJa2E0X10kL1UBPAO4qmChiaPR42qLgo2hguTp50kA0qMSrImKb1JDZGoiKxFBybtX31HL3YXg722gd348-U4nsH7YAGpK5959LexbiiPp8_sq8g52Ed6SZcavgM0mW80)
 
 Below we can see  that the system reports out it is now transitioning from `$AB` rather than from the individual states:
 

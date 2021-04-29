@@ -339,7 +339,7 @@ The Machine Block houses the system state machine and defines the behavior of th
 ##
 ```
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld5BJC_CKghbgkQArOXLqTUqW8bmEgNafG5K0)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8Ld5BJC_CKghbgkQArOXLqTUqW8bmEgNafG5K0)
 
 ### States
 
@@ -740,7 +740,7 @@ A simple filter system is a good example of when changing state is more appropri
 
 Frame notates a state change `->>` visually using a dashed line:
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuUBY0Z9BKXMSS_ABKrCKghbgeGB-1QbvO6wqLgo2hguTL0KNLA5kT4fYSKPgIYnG1gpKIa5DsT38n3eVo86mk43Y28Lm8-1Aaq5Sg5g7rBmKe7i0)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuUBY0Z9BKXMSS_ABKrCKghbgeGB-1QbvO6wqLgo2hguTL0KNLA5kT4fYSKPgIYnG1gpKIa5DsT38n3eVo86mk43Y28Lm8-1Aaq5Sg5g7rBmKe7i0)
 
 The implementation of the state change mechanism consists of the addition of the `_changeState_()` method that only updates the `_state_` variable (no enter/exit events) as well as its use in the event handlers:
 
@@ -1008,7 +1008,7 @@ The default behavior of Frame is to label transitions with the message that gene
 ##
 ```
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SmErehLa5Nrqx1aSiHH0D5hHJKb0sDJAnJ3I4qbqDgNWhG2000)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8L71MgkMgXR2SmErehLa5Nrqx1aSiHH0D5hHJKb0sDJAnJ3I4qbqDgNWhG2000)
 
 However this leads to ambiguity with two or more transitions from the same event handler:
 
@@ -1033,7 +1033,7 @@ However this leads to ambiguity with two or more transitions from the same event
 ##
 ```
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8LGlEIKujA4ZFp5AgvQg5Y8KMbgKXSjyISOWW_MYjMGLVN3g692yu2YKCqMYceAHiQcLXdvXKNf2QNG3Ye2i56ubBfa9gN0dGV0000)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8LGlEIKujA4ZFp5AgvQg5Y8KMbgKXSjyISOWW_MYjMGLVN3g692yu2YKCqMYceAHiQcLXdvXKNf2QNG3Ye2i56ubBfa9gN0dGV0000)
 
 Transition labels provide clarity as to which transition is which:
 
@@ -1058,7 +1058,7 @@ Transition labels provide clarity as to which transition is which:
 ##
 ```
 
-![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8LGlEIKujA4ZFp5AgvQg5Y8KMbgKXSjyISOWW_MYjMGLVN3g692yu2YKCqMYcKWAYq_7nKMQWvLY0PXRpy4h0oBeVKl1IWQm00)
+![](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuG8oIb8LGlEIKujA4ZFp5AgvQg5Y8KMbgKXSjyISOWW_MYjMGLVN3g692yu2YKCqMYcKWAYq_7nKMQWvLY0PXRpy4h0oBeVKl1IWQm00)
 
 
 
