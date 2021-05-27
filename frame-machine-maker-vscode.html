@@ -1,7 +1,62 @@
 <!DOCTYPE html>
 <html>
+​
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome file</title>
+    <link rel="stylesheet" href="https://stackedit.io/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function copyToClipboard(message) {
+        var textArea = document.createElement("textarea");
+        textArea.value = message;
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        const snackbarDiv  = document.getElementById("snackbar");
+        snackbarDiv.className = "show";
+
+        try {
+          const successful = document.execCommand('copy');
+          snackbarDiv.innerHTML = successful ? "Link successfully copied" : "Error while coping link"
+          setTimeout(function(){ snackbarDiv.className = snackbarDiv.className.replace("show", ""); }, 2500);
+        } catch (err) {
+          snackbarDiv.innerHTML = "Error while coping link"
+          setTimeout(function(){ snackbarDiv.className = snackbarDiv.className.replace("show", ""); }, 2500);
+        }
+        document.body.removeChild(textArea);
+      }
+
+      $(document).ready(function () {
+        $("#copyGitterLink").click(function (event) {
+          copyToClipboard("https://gitter.im/frame-language/community");
+        });
+        $("#copyDiscordLink").click(function (event) {
+          copyToClipboard("https://discord.com/invite/CfbU4QCbSD");
+        });
+        $("#copyRedditLink").click(function (event) {
+          copyToClipboard("https://www.reddit.com/r/statemachines/");
+        });
+        $("#copyYoutubeLink").click(function (event) {
+          copyToClipboard("https://youtu.be/MfOIQfuPw30");
+        });
+        $("#copyPatreonLink").click(function (event) {
+          copyToClipboard("https://www.patreon.com/bePatron?u=54426227");
+        });
+        $("#copyFrameSiteLink").click(function (event) {
+          copyToClipboard("https://frame-lang.org");
+        });
+        $("#copyFramepilerLink1").click(function (event) {
+          copyToClipboard("https://framepiler.frame-lang.org/");
+        });
+        $("#copyFramepilerLink2").click(function (event) {
+          copyToClipboard("https://framepiler.frame-lang.org/");
+        });
+      });
+    </script>
     <style>
       /* The snackbar - position it at the bottom and in the middle of the screen */
       #snackbar {
@@ -48,46 +103,50 @@
         from {bottom: 30px; opacity: 1;}
         to {bottom: 0; opacity: 0;}
       }
+​
+      .copyLinks {
+        color: #0c93e4;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+​
+      .copyLinks:hover {
+        text-decoration: none;
+      }
     </style>
   </head>
-  <body>
 ​
-    <!-- Add clipboard-urls class to copy the url given in href tag -->
-    <a class="clipboard-urls" href="https://google.com">google.com</a>
-​
-    <!-- Display success/error message after link copied -->
-    <div id="snackbar"></div>
-​
+  <body class="stackedit">
+    <div class="stackedit__html"><h1 id="welcome-to-the-frame-machine-maker">Welcome to the Frame Machine Maker</h1>
+      <p>
+        <img width="35%" id="copyPatreonLink" src="https://frame-lang.org/assets/img/patreon-button.png">
+      </p>
+      <p><strong>Machine Maker</strong> is an editing system for creating <em>Frame system specification documents</em>. Frame is a markdown language that helps software architects and developers quickly and easily define state machines that capture the core system logic.</p>
+      <p>At the heart of Machine Maker is the <strong class="copyLinks" id="copyFramepilerLink1"> Framepiler </strong>. The Framepiler is an open source transpiler written in Rust and bundled with Machine Maker. The Framepiler takes Frame specs and generates both UML documentation and state machines in 6 programming languages (with more to come!).</p>
+      <p>This version of <strong>Machine Maker</strong> generates the following languages:</p>
+      <ul>
+        <li>C++</li>
+        <li>C#</li>
+        <li>GDScript</li>
+        <li>Java</li>
+        <li>JavaScript</li>
+        <li>Python</li>
+      </ul>
+      <p>You can learn more about Frame from these resources:</p>
+      <ul>
+        <!-- <li><a href="https://framepiler.frame-lang.org/">Framepiler</a> - check out the online version of this plugin, explore the examples and share with the world your Frame’n</li> -->
+        <!-- <li><a href="https://frame-lang.org">The Official Frame Site</a></li> -->
+        <li> <span class="copyLinks" id="copyFramepilerLink2"> Framepiler </span> - check out the online version of this plugin, explore the examples and share with the world your Frame’n</li>
+        <li class="copyLinks" id="copyFrameSiteLink">The Official Frame Site</li>
+        <li class="copyLinks" id="copyYoutubeLink">Getting Started With Frame Video</li>
+      </ul>
+      <p>If you would like to find ouot more about Frame join a growing community and connect:</p>
+      <ul>
+        <li class="copyLinks" id="copyGitterLink">Gitter</li>
+        <li class="copyLinks" id="copyDiscordLink">Discord</li>
+        <li class="copyLinks" id="copyRedditLink">State Machine Reddit (I’m the mod)</li>
+      </ul>
+    </div>
   </body>
-  <script>
-    function copyToClipboard(message) {
-      var textArea = document.createElement("textarea");
-      textArea.value = message;
-      textArea.style.opacity = "0";
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-
-      const snackbarDiv  = document.getElementById("snackbar");
-      snackbarDiv.className = "show";
 ​
-      try {
-        const successful = document.execCommand('copy');
-        snackbarDiv.innerHTML = successful ? "Link successfully copied" : "Error while coping link"
-        setTimeout(function(){ snackbarDiv.className = snackbarDiv.className.replace("show", ""); }, 2500);
-      } catch (err) {
-        snackbarDiv.innerHTML = "Error while coping link"
-        setTimeout(function(){ snackbarDiv.className = snackbarDiv.className.replace("show", ""); }, 2500);
-      }
-      document.body.removeChild(textArea);
-    }
-​
-    $(document).ready(function () {
-      $(".clipboard-urls").click(function (event) {
-        event.preventDefault();
-        const ele = $(this);
-        copyToClipboard(ele.attr("href"));
-      });
-    });
-  </script>
 </html>
