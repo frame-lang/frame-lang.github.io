@@ -1265,7 +1265,7 @@ In object-oriented terminology, domain variables are simply member variables. As
 ```
 #DomainVariables
 
-    -interface- 
+    -interface-
 
     start @(|>>|)
 
@@ -1316,6 +1316,10 @@ State variable scope is across all event handlers for the lifecycle of the state
 `Frame`
 ```
 #StateVariableExample
+
+    -interface-
+
+    stop @(|<<|)
 
     -machine-
 
