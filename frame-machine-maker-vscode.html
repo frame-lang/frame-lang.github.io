@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-​
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +11,13 @@
       function copyToClipboard(message) {
         var textArea = document.createElement("textarea");
         textArea.value = message;
-        textArea.style.opacity = "0";
+        textArea.style.opacity = "0"; 
         document.body.appendChild(textArea);
-        textArea.focus();
         textArea.select();
-
+        
         const snackbarDiv  = document.getElementById("snackbar");
         snackbarDiv.className = "show";
-
+  
         try {
           const successful = document.execCommand('copy');
           snackbarDiv.innerHTML = successful ? "Link successfully copied" : "Error while coping link"
@@ -29,7 +28,7 @@
         }
         document.body.removeChild(textArea);
       }
-
+  
       $(document).ready(function () {
         $("#copyGitterLink").click(function (event) {
           copyToClipboard("https://gitter.im/frame-language/community");
@@ -73,7 +72,7 @@
         left: 50%; /* Center the snackbar */
         bottom: 30px; /* 30px from the bottom */
       }
-​
+
       /* Show the snackbar when clicking on a button (class added with JavaScript) */
       #snackbar.show {
         visibility: visible; /* Show the snackbar */
@@ -82,40 +81,40 @@
         -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
         animation: fadein 0.5s, fadeout 0.5s 2.5s;
       }
-​
+
       /* Animations to fade the snackbar in and out */
       @-webkit-keyframes fadein {
         from {bottom: 0; opacity: 0;}
         to {bottom: 30px; opacity: 1;}
       }
-​
+
       @keyframes fadein {
         from {bottom: 0; opacity: 0;}
         to {bottom: 30px; opacity: 1;}
       }
-​
+
       @-webkit-keyframes fadeout {
         from {bottom: 30px; opacity: 1;}
         to {bottom: 0; opacity: 0;}
       }
-​
+
       @keyframes fadeout {
         from {bottom: 30px; opacity: 1;}
         to {bottom: 0; opacity: 0;}
       }
-​
+
       .copyLinks {
         color: #0c93e4;
         text-decoration: underline;
         cursor: pointer;
       }
-​
+
       .copyLinks:hover {
         text-decoration: none;
       }
     </style>
   </head>
-​
+
   <body class="stackedit">
     <div class="stackedit__html"><h1 id="welcome-to-the-frame-machine-maker">Welcome to the Frame Machine Maker</h1>
       <p>
@@ -134,8 +133,6 @@
       </ul>
       <p>You can learn more about Frame from these resources:</p>
       <ul>
-        <!-- <li><a href="https://framepiler.frame-lang.org/">Framepiler</a> - check out the online version of this plugin, explore the examples and share with the world your Frame’n</li> -->
-        <!-- <li><a href="https://frame-lang.org">The Official Frame Site</a></li> -->
         <li> <span class="copyLinks" id="copyFramepilerLink2"> Framepiler </span> - check out the online version of this plugin, explore the examples and share with the world your Frame’n</li>
         <li class="copyLinks" id="copyFrameSiteLink">The Official Frame Site</li>
         <li class="copyLinks" id="copyYoutubeLink">Getting Started With Frame Video</li>
@@ -147,6 +144,9 @@
         <li class="copyLinks" id="copyRedditLink">State Machine Reddit (I’m the mod)</li>
       </ul>
     </div>
+
+    <!-- Display success/error message after link copied -->
+    <div id="snackbar"></div>
   </body>
-​
+
 </html>
