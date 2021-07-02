@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome file</title>
+    <link rel="stylesheet" href="https://stackedit.io/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function copyToClipboard(message) {
+        var textArea = document.createElement("textarea");
+        textArea.value = message;
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        const snackbarDiv  = document.getElementById("snackbar");
+        snackbarDiv.className = "show";
+
+        try {
+          const successful = document.execCommand('copy');
+          snackbarDiv.innerHTML = successful ? "Link successfully copied" : "Error while coping link"
+          setTimeout(function(){ snackbarDiv.className = snackbarDiv.className.replace("show", ""); }, 2500);
+        } catch (err) {
+          snackbarDiv.innerHTML = "Error while coping link"
+          setTimeout(function(){ snackbarDiv.className = snackbarDiv.className.replace("show", ""); }, 2500);
+        }
+        document.body.removeChild(textArea);
+      }
+
+      $(document).ready(function () {
+        $("#copyGitterLink").click(function (event) {
+          copyToClipboard("https://gitter.im/frame-language/community");
+        });
+        $("#copyDiscordLink").click(function (event) {
+          copyToClipboard("https://discord.com/invite/CfbU4QCbSD");
+        });
+        $("#copyRedditLink").click(function (event) {
+          copyToClipboard("https://www.reddit.com/r/statemachines/");
+        });
+        $("#copyYoutubeLink").click(function (event) {
+          copyToClipboard("https://youtu.be/MfOIQfuPw30");
+        });
+        $("#copyPatreonLink").click(function (event) {
+          copyToClipboard("https://www.patreon.com/bePatron?u=54426227");
+        });
+        $("#copyFrameSiteLink").click(function (event) {
+          copyToClipboard("https://frame-lang.org");
+        });
+        $("#copyFramepilerLink1").click(function (event) {
+          copyToClipboard("https://framepiler.frame-lang.org/");
+        });
+        $("#copyFramepilerLink2").click(function (event) {
+          copyToClipboard("https://framepiler.frame-lang.org/");
+        });
+      });
+    </script>
+    <style>
+      /* The snackbar - position it at the bottom and in the middle of the screen */
+      #snackbar {
+        visibility: hidden; /* Hidden by default. Visible on click */
+        min-width: 250px; /* Set a default minimum width */
+        margin-left: -125px; /* Divide value of min-width by 2 */
+        background-color: #333; /* Black background color */
+        color: #fff; /* White text color */
+        text-align: center; /* Centered text */
+        border-radius: 2px; /* Rounded borders */
+        padding: 16px; /* Padding */
+        position: fixed; /* Sit on top of the screen */
+        z-index: 1; /* Add a z-index if needed */
+        left: 50%; /* Center the snackbar */
+        bottom: 30px; /* 30px from the bottom */
+      }
+
+      /* Show the snackbar when clicking on a button (class added with JavaScript) */
+      #snackbar.show {
+        visibility: visible; /* Show the snackbar */
+        /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+        However, delay the fade out process for 2.5 seconds */
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      }
+
+      /* Animations to fade the snackbar in and out */
+      @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+      }
+
+      @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+      }
+
+      @-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+      }
+
+      @keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+      }
+
+      .copyLinks {
+        color: #0c93e4;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .copyLinks:hover {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body class="stackedit">
+    <div class="stackedit__html"><h1 id="welcome-to-the-frame-machine-maker">Welcome to the Frame Machine Maker</h1>
+      <p>
+        <img width="35%" id="copyPatreonLink" src="https://frame-lang.org/assets/img/patreon-button.png">
+      </p>
+      <p><strong>Machine Maker</strong> is an editing system for creating <em>Frame system specification documents</em>. Frame is a markdown language that helps software architects and developers quickly and easily define state machines that capture the core system logic.</p>
+      <p>At the heart of Machine Maker is the <strong class="copyLinks" id="copyFramepilerLink1"> Framepiler </strong>. The Framepiler is an open source transpiler written in Rust and bundled with Machine Maker. The Framepiler takes Frame specs and generates both UML documentation and state machines in 7 programming languages (with more to come!).</p>
+      <p>This version of <strong>Machine Maker</strong> generates the following languages:</p>
+      <ul>
+        <li>C++</li>
+        <li>C#</li>
+        <li>GDScript</li>
+        <li>Java</li>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>Rust</li>
+      </ul>
+      <p>You can learn more about Frame from these resources:</p>
+      <ul>
+        <li> <span class="copyLinks" id="copyFramepilerLink2"> Framepiler </span> - check out the online version of this plugin, explore the examples and share with the world your Frame’n</li>
+        <li class="copyLinks" id="copyFrameSiteLink">The Official Frame Site</li>
+        <li class="copyLinks" id="copyYoutubeLink">Getting Started With Frame Video</li>
+      </ul>
+      <p>If you would like to find ouot more about Frame join a growing community and connect:</p>
+      <ul>
+        <li class="copyLinks" id="copyGitterLink">Gitter</li>
+        <li class="copyLinks" id="copyDiscordLink">Discord</li>
+        <li class="copyLinks" id="copyRedditLink">State Machine Reddit (I’m the mod)</li>
+      </ul>
+    </div>
+
+    <!-- Display success/error message after link copied -->
+    <div id="snackbar"></div>
+  </body>
+
+</html>
