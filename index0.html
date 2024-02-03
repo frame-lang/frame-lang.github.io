@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <title>The Framepiler</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script type="text/javascript" src="include/js/rawdeflate.js"></script>
+
+    <script src="./bootstrap.js"></script>
+    <script src="lib/codemirror.js"></script>
+    <link rel="stylesheet" href="lib/codemirror.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/@datavis-tech/codemirror-6-prerelease@5.0.0/codemirror.next/legacy-modes/style/codemirror.css">
+    <script src="https://unpkg.com/@datavis-tech/codemirror-6-prerelease@5.0.0/dist/codemirror.js"></script> -->
+    <style>
+    .codemirror { height: auto; overflow: auto; border: 1px solid silver}
+    .codemirror-matching-bracket { background: red; }
+    .codemirror-nonmatching-bracket { background: green; }
+    </style>
+
+        <style>
+            #header {
+                display: flex;
+                margin-left: 45px;
+            }
+
+            #id_transistor_jpg {
+                height:50px;
+            }
+            .container {
+                border: 1px solid black;
+                /* height:500px; */
+            }
+
+            .left {
+                padding:0;
+            }
+
+            .right {
+                background: white;
+            }
+
+            textarea {
+                width: 100%;
+                height: 100%;
+                font: 14px  "Courier New";
+            }
+
+            .editor {
+                /* position: absolute; */
+                color: white;
+                margin: 0;
+              
+                margin: 0;
+                font-size: 12pt;
+                font-family: courier new;
+                height:100%;
+            }
+
+            .editor_container {
+                overflow: auto;
+            }
+
+            #id_editors {
+                border: 1px solid gray;
+                height:100%;
+            }
+
+            .tools {
+                height: 80%;
+                border: 1px solid blue;
+            }
+
+            #id_transistor_jpg {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            #id_framepiler_title {
+                border: 3px solid  white;
+                padding:3px 5px 3px 5px;
+            }
+
+            .CodeMirror {
+                height:650px;
+                /* background-color: #002d5a; */
+
+                /* color:white; */
+
+            }
+
+            .CodeMirror-vscrollbar {
+                scrollbar-color: white;
+            }
+
+            #id_page {
+                /* border:1px solid red; */
+            }
+
+            html,body {
+              /* height: 100%;
+              border:2px solid green; */
+            }
+
+            .frame_editor_title {
+                font-size:18px;
+            }
+
+        </style>
+
+  </head>
+  <body>
+
+      <!-- <div id="header">
+      </div> -->
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->
+
+
+    <!-- <div class="tools"> -->
+
+        <div id="id_page" class="container-fluid h-100">
+            <div class="row  p-3 my-3 bg-dark text-white">
+                <div class="col-12" style="display:flex;align-items:center;">
+                    <h1 id="id_framepiler_title">The Framepiler</h1>
+                    <a target="_blank" href="https://www.extremetech.com/extreme/175004-the-genesis-of-the-transistor-the-single-greatest-discovery-in-the-last-100-years">
+                        <img id="id_transistor_jpg" src="include/img/transistor.jpg" />
+                    </a>
+                    <span></span>
+                    <h2><small><i>The State Machine Maker Making State Machines Fun Again!</i></small></h2>
+                </div>
+            </div>
+            <div class="row" style="display:flex;align-items:center;margin:0px 5px 0px 5px;">
+                <div class="col frame_editor_title">
+                    <a target="_blank" href="https://github.com/frame-lang/frame-machine-notation">Frame State Machine Language</a>
+                    <button id="id_framepile_btn" style="margin-left:5px;">Framepile!</button>
+                </div>
+                <div class="col frame_editor_title">
+                    <select id="id_output_select"  style="margin:10px 0px 10px 25px;">
+                        <option value="PlantUml">UML</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="C++">C++</option>
+                        <option value="C#">C#</option>
+
+                    </select>
+                </div>
+            </div>
+            <div id="id_editors" class="row ">
+                <div class="col-6 left editor_container">
+                    <div id="editor" class="editor"></div>
+                </div>
+                <div class="col right editor_container">
+                    <div id="id_output" class="editor"></div>
+                    <div id="id_uml_output" class="editor"><img id="uml_target" ></div>
+                </div>
+
+            </div>
+
+        </div>
+
+  </body>
+</html>
